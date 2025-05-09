@@ -1,3 +1,4 @@
+// By Mateusz Gembarzewski for assignment 4 in class CS553 taught by Professor Ebrahimi at Adelphi university on 4/15/25
 #include <semaphore.h>
 #include <pthread.h>
 #include <stdlib.h>
@@ -9,6 +10,10 @@ sem_t room, forks[5];
 
 void *philosopher(int i) {
 	int h  = 0;
+	/* My one change to the logic presented in the textbook was to use the
+        *  h int variable inplace of the i int variable from pthread_create()
+	* in order to break the starvation that was occuring with the i variable. 
+	*/
 		while(h < 5) {
 			sem_wait(&room);
 			sem_wait(&forks[h]);
